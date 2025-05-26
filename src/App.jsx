@@ -12,6 +12,7 @@ import Detail from '../public/components/Detail';
 import Login from '../public/pages/Login';
 import Admin from '../public/pages/Admin';
 import Profile from '../public/pages/Profile';
+import Cart from '../public/pages/Cart';
 
 function App() {
   return (
@@ -22,8 +23,9 @@ function App() {
         <Route path="/dress" element={<Dress />} />
         <Route path="/electronics" element={<Electronics />} />
         <Route path="/jewelry" element={<Jewelry />} />
-        <Route path="/login" element={<Login />} />        
-        <Route path="/profile/:id" element={
+        <Route path="/login" element={<Login />} />       
+        <Route path="/cart" element={<Cart />} />        
+        <Route path="/profile/" element={
           <ProtectedRoutes><Profile /></ProtectedRoutes>
         } />
         <Route path="/admin" element={

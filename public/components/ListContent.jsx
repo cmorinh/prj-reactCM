@@ -39,7 +39,7 @@ function ListContent() {
                         </Card.Body>
                     </Card>
                 </Col>
-            ))};
+            ))}
             </Row>
         </Container>
         )
