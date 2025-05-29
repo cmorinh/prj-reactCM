@@ -6,13 +6,14 @@ import ProtectedRoutes from '../public/components/ProtectedRoutes';
 import Header from "../public/components/Header";
 import Home from '../public/pages/Home';
 import Dress from '../public/pages/Dress';
-import Electronics from '../public/pages/Dress';
+import Electronics from '../public/pages/Electronics';
 import Jewelry from '../public/pages/Jewelry';
 import Detail from '../public/components/Detail';
 import Login from '../public/pages/Login';
 import Admin from '../public/pages/Admin';
 import Profile from '../public/pages/Profile';
 import Cart from '../public/pages/Cart';
+import Footer from '../public/components/Footer';
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
         } />
         <Route path="/detail/:id" element={<Detail/>} />
       </Routes>
-      
+      <Footer/>
     </BrowserRouter>
   )
 }

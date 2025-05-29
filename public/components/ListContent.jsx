@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 import { Container,Row,Col,Card, Button, Stack } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 
-function ListContent() {
+function ListContent(props) {
     const navigate = useNavigate();
     const [content, setContent] = useState([]);
 
     useEffect(() => {
         fetch("https://fakestoreapi.com/products")
             .then(response => response.json())
-            .then(data => {
-                    console.log(data); 
-                    setContent(data);
+            .then(data => {                  
+                    if(props.filter){
+                        const products = data.filter((item) => item.category.includes(props.filter.category));
+                        setContent(products);
+                    } else {
+                        setContent(data);
+                    }  
             })
             .catch(error => {
                 console.error(error)

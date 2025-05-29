@@ -19,7 +19,7 @@ function Header() {
   return (
     <Navbar expand="md" sticky="top" className="bg-body-tertiary mb-4">
       <Container>
-        <Navbar.Brand className="fs-1 fw-bold" as={Link} to={'/'}>SHOP STORE</Navbar.Brand>
+        <Navbar.Brand className="fs-1 fw-bold" as={Link} to={'/'}>STORE</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto d-flex align-items-md-center">  
