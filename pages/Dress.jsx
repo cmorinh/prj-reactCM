@@ -1,8 +1,10 @@
+import ListContent from "../components/ListContent";
+
 function Dress() {
+    const filter = { category : "clothing" }
+
     return (
-        <div>
-            Estoy en Dress
-        </div>
+       <ListContent filter={filter} />
     )
 }
 

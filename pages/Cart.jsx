@@ -1,61 +1,69 @@
-import { useEffect, useState } from "react";
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Table, Button } from 'react-bootstrap';
+import { useCart } from "../contexts/CartContext";
 
 function Cart() {
-    const [content, setContent] = useState([]);
-    const [cart, setCart] = useState([]);
+    const { cart, content, removeFromCart } = useCart();
 
-    // Cargar el carrito desde localStorage al iniciar
-    useEffect(() => {
-        const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-        setCart(storedCart);
-    }, []);
-
-    // Actualizar `content` cada vez que `cart` cambie
-    useEffect(() => {
-        fetch('https://fakestoreapi.com/products/')
-            .then(response => response.json())
-            .then(data => {
-                const products = data.filter(item => cart.includes(item.id));
-                setContent(products);
-            })
-            .catch(error => {
-                console.error("Error al obtener los productos:", error);
-            });
-    }, [cart]); // Dependencia cart: actualiza la lista cuando se modifica el carrito
-
-    // Función para eliminar productos del carrito
-    const removeCart = (id) => {
-        setCart(prevCart => {
-            const updatedCart = prevCart.filter(cartItem => cartItem !== id);
-            localStorage.setItem("cart", JSON.stringify(updatedCart));
-            return updatedCart;
-        });
+    const handleRemoveFromCart = (id) => {
+        removeFromCart(id);
     };
 
     return (
-        <Container className="container d-flex justify-content-center">
-            <Row className="w-75">
-                {content.length === 0 ? (
-                    <p>El carrito está vacío</p>
-                ) : (
-                    content.map(item => (
-                        <Col key={item.id} className="col-sm-4 col-lg-3">
-                            <Card>
-                                <Card.Img variant="top" src={item.image} />
-                                <Card.Body>
-                                    <Card.Title>{item.title}</Card.Title>
-                                    <Card.Subtitle className="mb-2 text-muted">Precio: ${item.price}</Card.Subtitle>
-                                    <Card.Text>
-                                        {item.description}
-                                    </Card.Text>
-                                    <Button variant="danger" onClick={() => removeCart(item.id)}>Delete</Button>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    ))
-                )}
-            </Row>
+        <Container className="py-4">
+            {content.length === 0 ? (
+                <div className="text-center">
+                    <h3>El carrito está vacío</h3>
+                </div>
+            ) : (
+                <Table responsive hover className="align-middle">
+                    <thead>
+                        <tr className="text-center">
+                            <th>Products</th>
+                            <th>Details</th>
+                            <th>Count</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {content.map(item => (
+                            <tr key={item.id}>
+                                <td style={{ width: '150px' }}>
+                                    <img 
+                                        src={item.image} 
+                                        alt={item.title}
+                                        style={{ 
+                                            maxWidth: '150px',
+                                            height: 'auto',
+                                            objectFit: 'contain'
+                                        }}
+                                    />
+                                </td>
+                                <td>
+                                    <div>
+                                        <h5 className="mb-2">{item.title}</h5>
+                                        <p className="text-muted mb-1">ID: {item.id}</p>
+                                        <p className="text-primary fw-bold mb-0">${item.price}</p>
+                                    </div>
+                                </td>
+                                <td className="text-center">
+                                    <span className="badge bg-secondary fs-6">
+                                        {cart.filter(cartItem => cartItem === item.id).length}
+                                    </span>
+                                </td>
+                                <td className="text-center">
+                                    <Button 
+                                        variant="danger" 
+                                        size="sm"
+                                        onClick={() => handleRemoveFromCart(item.id)}
+                                    >
+                                        Eliminar
+                                    </Button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            )}
         </Container>
     );
 }

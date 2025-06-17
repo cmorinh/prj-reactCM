@@ -1,46 +1,32 @@
 import { useNavigate } from "react-router-dom";
-import { useState} from 'react';
+import { useState, useContext} from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Container, Col } from "react-bootstrap";
+import { useAuth } from "../contexts/AuthContext";
 
 function Login() {
+    const { login } = useAuth();
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
-    const isEmailValid = (email) => {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    };
-
-    const isPasswordValid = (password) => {
-        return password === password;
-    };
-
-    const login = (e) => {
+    const handleLogin = (e) => {
         e.preventDefault();
         setMessage('');
 
-        if(!isEmailValid(email)) {
-            setMessage('The email address entered is not validated.');
-            return;
+        if(login(email, password)) {
+            navigate('/');
+        } else {
+            setMessage('The email address or password entered is not validated.');
         }
-
-        if(!isPasswordValid) {
-            setMessage('The password entered is not validated');
-            return;  
-        }
-
-        localStorage.setItem('auth','true');
-        navigate('/');
-    }
+    };
 
     return (
         <Container className="d-flex justify-content-center">
             <Col className="col-10 col-md-4">
-                <Form onSubmit={login}>
+                <Form onSubmit={handleLogin}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className="text-white">Enter Email</Form.Label>
                         <Form.Control type="email" className="text-center" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />

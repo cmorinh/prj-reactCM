@@ -1,8 +1,10 @@
+import ListContent from "../components/ListContent";
+
 function Electronics() {
+    const filter = { category : "electronics" }
+
     return (
-        <div>
-            Estoy en Electronics
-        </div>
+        <ListContent filter={filter} />
     )
 }
 
