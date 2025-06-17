@@ -28,16 +28,16 @@ function ListContent(props) {
 
     return (
         <Container className="container d-flex justify-content-center">
-            <Row className="w-75">
+            <Row className="w-100 g-4">
             {content.map(item=> (
-                <Col key={item.id} className="col-sm-4 col-lg-3">
-                    <Card>
-                        <Card.Img variant="top" src={item.image} />
-                        <Card.Body>
-                            <Card.Title>{item.title}</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">Price: {item.price}</Card.Subtitle>
-                            <Card.Text>
-                                {item.description}
+                <Col key={item.id} xs={6} md={4} lg={3}>
+                    <Card className="h-100">
+                        <Card.Img variant="top" src={item.image} style={{ height: '200px', objectFit: 'contain', padding: '1rem' }} />
+                        <Card.Body className="d-flex flex-column">
+                            <Card.Title className="text-truncate">{item.title}</Card.Title>
+                            <Card.Subtitle className="mb-2 text-muted">Price: ${item.price}</Card.Subtitle>
+                            <Card.Text className="flex-grow-1">
+                                {item.description.substring(0, 100)}...
                             </Card.Text>
                             <Button variant="primary" onClick={() => detail(item.id)}>Detail</Button>
                         </Card.Body>

@@ -2,6 +2,11 @@ body {
   background-color: black;
 } 
 
+/* Ajuste para el contenido principal para evitar que el footer lo tape */
+.container-fluid {
+  margin-bottom: 100px; /* Ajusta este valor según la altura de tu footer */
+} 
+
 /*:root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
