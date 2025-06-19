@@ -46,12 +46,17 @@ export function CartProvider({ children }) {
         });
     };
 
+    const clearCart = () => {
+        setCart([]);
+        localStorage.removeItem("cart");
+    };
+
     const countCart = () => {
         return cart.length;
     };
 
     return (
-        <CartContext.Provider value={{ cart, content, addToCart, removeFromCart, countCart }}>
+        <CartContext.Provider value={{ cart, content, addToCart, removeFromCart, countCart, clearCart }}>
             {children}
         </CartContext.Provider>
     );

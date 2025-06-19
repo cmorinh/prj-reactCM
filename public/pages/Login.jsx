@@ -28,20 +28,20 @@ function Login() {
             <Col className="col-10 col-md-4">
                 <Form onSubmit={handleLogin}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label className="text-white">Enter Email</Form.Label>
-                        <Form.Control type="email" className="text-center" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                        <Form.Label className="text-white">Email</Form.Label>
+                        <Form.Control type="email" className="text-center" placeholder="address@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
                         <Form.Text className="text-white" style={{fontSize:"0.6rem"}}>
                             We'll never share your email with anyone else
                         </Form.Text>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label className="text-white">Enter Password</Form.Label>
-                        <Form.Control type="password" className="text-center" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        <Form.Label className="text-white">Password</Form.Label>
+                        <Form.Control type="password" className="text-center" placeholder="XXXXXXXX" value={password} onChange={(e) => setPassword(e.target.value)} required />
                     </Form.Group>
                     <div className="text-danger fw-bold mb-3 text-center" style={{fontSize:"0.8rem"}}>{message}</div>
                     <Form.Group className="mb-3 d-flex justify-content-center" controlId="formBasicPassword">
-                        <Button variant="success" type="submit">
+                        <Button variant="success" type="submit" className="w-50" >
                             Enter
                         </Button>
                     </Form.Group>                    
