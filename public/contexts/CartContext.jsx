@@ -1,10 +1,14 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { useMockupApi } from "../contexts/MockupApiContext"
+import { useFakeStoreApi } from "../contexts/FakeStoreApiContext"
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
+    const {getFakeProduct, getFakeProducts} = useFakeStoreApi();
+    const {product, products, getProduct, getProducts} = useMockupApi();   
     const [cart, setCart] = useState([]);
-    const [content, setContent] = useState([]);
+    const [content, setContent] = useState([]); 
 
     // Cargar el carrito desde localStorage al iniciar
     useEffect(() => {
@@ -14,21 +18,38 @@ export function CartProvider({ children }) {
 
     // Actualizar `content` cada vez que `cart` cambie
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products/')
-            .then(response => response.json())
-            .then(data => {
-                const products = data.filter(item => cart.includes(item.id));
-                setContent(products);
-            })
-            .catch(error => {
-                console.error("Error al obtener los productos:", error);
-            });
-    }, [cart]); // Dependencia cart: actualiza la lista cuando se modifica el carrito
+        const fetchContents = async () => {
+            let contents = [];
+            
+            for (const item of cart) {
+                try {
+                    if(item.origin === 'oulet'){
+                        contents.push(await getProduct(item.id));
+                    } else {
+                        contents.push(await getFakeProduct(item.id));
+                    }
+                } catch (error) {
+                    console.error("Error fetching product:", error);
+                }
+            }
+            
+            setContent(contents);
+        };
 
-    const addToCart = (id) => {
+        if (cart.length > 0) {
+            fetchContents();
+        } else {
+            setContent([]);
+        }
+    }, [cart]);
+
+    const addToCart = (id, origin) => {
         setCart(prevCart => {
-            if (!prevCart.includes(id)) {
-                const updatedCart = [...prevCart, id];
+            // Verificar si el producto ya existe en el carrito
+            const exists = prevCart.some(item => item.id === id && item.origin === origin);
+            
+            if (!exists) {
+                const updatedCart = [...prevCart, {id, origin}];
                 localStorage.setItem("cart", JSON.stringify(updatedCart)); // Guardar en localStorage
                 return updatedCart;
             }
@@ -36,11 +57,9 @@ export function CartProvider({ children }) {
         });
     };
 
-    const removeFromCart = (id) => {
-        setCart(cart.filter(item => item !== id));
-
+    const removeFromCart = (id, origin) => {
         setCart(prevCart => {
-            const updatedCart = prevCart.filter(cartItem => cartItem !== id);
+            const updatedCart = prevCart.filter(cartItem => !(cartItem.id === id && cartItem.origin === origin));
             localStorage.setItem("cart", JSON.stringify(updatedCart));
             return updatedCart;
         });

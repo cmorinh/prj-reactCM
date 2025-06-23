@@ -1,3 +1,8 @@
 .container {
     font-family: "Inconsolata", monospace;
 }
+
+.nav-link:focus {
+    color: #000;
+    font-weight: bold;
+}

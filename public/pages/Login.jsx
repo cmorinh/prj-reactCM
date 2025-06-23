@@ -37,7 +37,7 @@ function Login() {
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label className="text-white">Password</Form.Label>
-                        <Form.Control type="password" className="text-center" placeholder="XXXXXXXX" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        <Form.Control type="password" className="text-center" placeholder="8 digits" value={password} onChange={(e) => setPassword(e.target.value)} required />
                     </Form.Group>
                     <div className="text-danger fw-bold mb-3 text-center" style={{fontSize:"0.8rem"}}>{message}</div>
                     <Form.Group className="mb-3 d-flex justify-content-center" controlId="formBasicPassword">

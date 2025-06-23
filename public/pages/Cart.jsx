@@ -8,7 +8,7 @@ import {useState} from 'react';
 function Cart() {
     const { cart, content, removeFromCart, clearCart } = useCart();
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
+    const navigate = useNavigate(); 
 
     const totalPrice = content.reduce((acc, item) => acc + item.price, 0);
 
@@ -95,7 +95,7 @@ function Cart() {
                                             </td>
                                             <td className="text-center">
                                                 <span className="badge bg-secondary fs-6">
-                                                    {cart.filter(cartItem => cartItem === item.id).length}
+                                                    {cart.filter(cartItem => cartItem.id === item.id).length}
                                                 </span>
                                             </td>
                                             <td className="text-center">

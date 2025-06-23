@@ -4,15 +4,19 @@ import { useParams } from "react-router-dom";
 import { useCart } from "../contexts/CartContext";
 import Swal from 'sweetalert2';
 import Loading from './Loading';
+import { useFakeStoreApi } from "../contexts/FakeStoreApiContext";
+import { useMockupApi } from "../contexts/MockupApiContext";
 
 function Detail() {
-    const {id} = useParams();
-    const {addToCart} = useCart();
+    const {getFakeProduct, getFakeProducts} = useFakeStoreApi();
+    const {product, products, getProduct, getProducts} = useMockupApi();
+    const {id, origin} = useParams();
+    const {addToCart} = useCart(); 
     const [content, setContent] = useState({});
     const [loading, setLoading] = useState(true);
     
-    const handleAddToCart = (id) => {
-        addToCart(id);
+    const handleAddToCart = (id, origin) => {
+        addToCart(id, origin);
         btnDisable();
         Swal.fire({
             title: 'Success',
@@ -27,19 +31,22 @@ function Detail() {
     }
 
     useEffect(() => {
-        fetch(`https://fakestoreapi.com/products/${id}`)
-            .then(response => response.json())
-            .then(data => {   
-                setContent(data);   
+        const fetchProduct = async () => {
+            setLoading(true);
+            let content = null;
 
-                setTimeout(() => {                    
-                    setLoading(false);
-                }, 2000);                
-            })
-            .catch(error => {
-                console.error(error)
-            });           
-    }, [id]);
+            if(origin === 'oulet'){
+                content = await getProduct(id);
+                setContent(content);
+            } else {
+                content = await getFakeProduct(id);
+                setContent(content);
+            }                 
+            setLoading(false);
+        };
+
+        fetchProduct();
+    }, [id, origin]);
 
     return (
         <>
@@ -73,7 +80,7 @@ function Detail() {
                                                id="btn-card" 
                                                variant="primary" 
                                                size="lg"
-                                               onClick={() => handleAddToCart(content.id)}
+                                               onClick={() => handleAddToCart(content.id, content.origin)}
                                            >
                                                Add to Cart
                                            </Button>
