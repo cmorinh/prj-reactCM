@@ -1,0 +1,6 @@
+.card-list:hover {
+    box-shadow: 0 0 10px 0 rgba(117, 112, 112, 0.1);
+    -webkit-filter: brightness(1.07);
+    filter: brightness(1.07);
+    transform: translate(0, -5px);
+}

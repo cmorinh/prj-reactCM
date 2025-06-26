@@ -7,12 +7,12 @@ import {useState} from 'react';
 
 function Cart() {
     const { cart, content, removeFromCart, clearCart } = useCart();
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate(); 
 
     const totalPrice = content.reduce((acc, item) => acc + item.price, 0);
 
-    const handleRemoveFromCart = (id) => {
+    const handleRemoveFromCart = (id, origin) => {
         Swal.fire({
             title: 'Are you sure?',
             text: 'You will not be able to recover this product!',
@@ -22,7 +22,7 @@ function Cart() {
             cancelButtonText: 'Cancel',
         }).then((result) => {
             if (result.isConfirmed) {
-                removeFromCart(id);
+                removeFromCart(id, origin);
             }
         });
     };
@@ -54,7 +54,14 @@ function Cart() {
     return (
         <>
             {loading 
-                ? <Loading /> 
+                ? (
+                    <>
+                        <Loading />
+                        {setTimeout(() => {
+                            setLoading(false);
+                        }, 2000)}
+                    </>
+                ) 
                 : (
                     <Container className="py-4">
                         {content.length === 0 ? (
@@ -99,13 +106,11 @@ function Cart() {
                                                 </span>
                                             </td>
                                             <td className="text-center">
-                                                <Button 
-                                                    variant="danger" 
-                                                    size="sm"
-                                                    onClick={() => handleRemoveFromCart(item.id)}
-                                                >
-                                                    Eliminar
-                                                </Button>
+                                                <div onClick={() => handleRemoveFromCart(item.id, item.origin)} title='Delete'>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-trash-fill text-muted" viewBox="0 0 16 16" style={{cursor: 'pointer'}}>
+                                                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                                                    </svg>
+                                                </div>                                                
                                             </td>
                                         </tr>
                                     ))}

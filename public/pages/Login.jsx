@@ -26,7 +26,7 @@ function Login() {
     return (
         <Container className="d-flex justify-content-center">
             <Col className="col-10 col-md-4">
-                <Form onSubmit={handleLogin}>
+                <Form onSubmit={(e) => handleLogin(e)}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className="text-white">Email</Form.Label>
                         <Form.Control type="email" className="text-center" placeholder="address@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required />

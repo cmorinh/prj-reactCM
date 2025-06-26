@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Container,Row,Col,Card, Button, Stack } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import { useFakeStoreApi } from "../contexts/FakeStoreApiContext";
+import './ListContent.css';
 
 function ListContent(props) {
     const { getFakeProducts } = useFakeStoreApi();
@@ -32,15 +33,14 @@ function ListContent(props) {
             <Row className="w-100 g-4">
             {content.map(item=> (
                 <Col key={item.id} xs={6} md={4} lg={3}>
-                    <Card className="h-100">
-                        <Card.Img variant="top" src={item.image} style={{ height: '200px', objectFit: 'contain', padding: '1rem' }} />
+                    <Card className="h-100 card-list" onClick={() => detail(item.id, item.origin)}>
+                        <Card.Img variant="top" src={item.image} style={{ height: '200px', objectFit: 'contain', padding: '1rem' }} alt={item.title} />
                         <Card.Body className="d-flex flex-column">
                             <Card.Title className="text-truncate">{item.title}</Card.Title>
                             <Card.Subtitle className="mb-2 text-primary">Price: ${item.price}</Card.Subtitle>
-                            <Card.Text className="flex-grow-1">
+                            <Card.Text className="flex-grow-1" style={{fontSize: '0.8rem', }}>
                                 {item.description.substring(0, 100)}...
                             </Card.Text>
-                            <Button variant="primary" onClick={() => detail(item.id, item.origin)}>Detail</Button>
                         </Card.Body>
                     </Card>
                 </Col>

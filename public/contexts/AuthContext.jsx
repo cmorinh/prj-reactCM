@@ -15,8 +15,8 @@ export function AuthProvider({ children }) {
         if (savedToken && savedUser) {
             setToken(savedToken);
             setUser(savedUser);
-            setIsAuthenticated(savedIsAuthenticated);
-      }
+            setIsAuthenticated(savedIsAuthenticated === "true");
+        }
     }, []);
 
     const isEmailValid = (email) => {

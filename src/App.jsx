@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
-import './App.css';
+import { AuthProvider } from '../public/contexts/AuthContext';
+import { MockupApiProvider } from '../public/contexts/MockupApiContext';
+import { FakeStoreApiProvider } from '../public/contexts/FakeStoreApiContext';
+import { CartProvider } from '../public/contexts/CartContext';
 import ProtectedRoutes from '../public/components/ProtectedRoutes';
 import Header from "../public/components/Header";
 import Home from '../public/pages/Home';
@@ -14,25 +15,23 @@ import Admin from '../public/pages/Admin';
 import Profile from '../public/pages/Profile';
 import Cart from '../public/pages/Cart';
 import Footer from '../public/components/Footer';
-import { AuthProvider } from '../public/contexts/AuthContext';
-import { MockupApiProvider } from '../public/contexts/MockupApiContext';
-import { FakeStoreApiProvider } from '../public/contexts/FakeStoreApiContext';
-import { CartProvider } from '../public/contexts/CartContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
+import './App.css';
 
 function App() {
   return (
-    <AuthProvider>      
-      <MockupApiProvider>
-        <FakeStoreApiProvider>
-          <CartProvider>
-            <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>      
+        <MockupApiProvider>
+          <FakeStoreApiProvider>
+            <CartProvider>
               <Header />
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/dress" element={<Dress />} />
                 <Route path="/electronics" element={<Electronics />} />
-                <Route path="/jewelry" element={<Jewelry />} />
-                <Route path="/login" element={<Login />} />       
+                <Route path="/jewelry" element={<Jewelry />} />                   
                 <Route path="/cart" element={<Cart />} />        
                 <Route path="/profile/" element={
                   <ProtectedRoutes><Profile /></ProtectedRoutes>
@@ -41,13 +40,14 @@ function App() {
                   <ProtectedRoutes><Admin /></ProtectedRoutes>
                 } />
                 <Route path="/detail/:id/:origin" element={<Detail/>} />
+                <Route path="/login" element={<Login />} />    
               </Routes>
               <Footer/>
-            </BrowserRouter>
-          </CartProvider>
-        </FakeStoreApiProvider>
-      </MockupApiProvider>      
-    </AuthProvider>
+            </CartProvider>
+          </FakeStoreApiProvider>
+        </MockupApiProvider>      
+      </AuthProvider>
+    </BrowserRouter>
   )
 }
 
