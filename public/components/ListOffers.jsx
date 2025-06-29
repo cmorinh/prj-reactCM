@@ -1,27 +1,21 @@
 import { useEffect, useState } from "react";
 import { Container,Row,Col,Card, Button, Stack } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
-import { useFakeStoreApi } from "../contexts/FakeStoreApiContext";
-import './ListContent.css';
+import { useMockupApi } from "../contexts/MockupApiContext";
 
-function ListContent(props) {
-    const { getFakeProducts } = useFakeStoreApi();
+function ListOffers(props) {
     const navigate = useNavigate();
+    const { getProducts } = useMockupApi();
     const [content, setContent] = useState([]);
 
-    useEffect(() => {  
+    useEffect(() => {
         const fetchProducts = async () => {
-            const data = await getFakeProducts();
+            const data = await getProducts();
 
-            if(props.filter){
-                const products = data.filter((item) => item.category.includes(props.filter.category));	
-
-                if(props.filter.top !== undefined){    
-                    const randomProducts = products.slice(0, props.filter.top);
-                    setContent(randomProducts); 
-                } else {
-                    setContent(products);
-                }
+            if(props.filter && props.filter.top !== undefined){
+                const randomProducts = data.slice(0, props.filter.top);
+                setContent(randomProducts); 
+                
             } else {
                 setContent(data);
             }  
@@ -30,6 +24,7 @@ function ListContent(props) {
         fetchProducts();    
     }, []);
 
+    
     const detail = (id, origin) => {
         navigate(`/detail/${id}/${origin}`);
     };
@@ -54,6 +49,6 @@ function ListContent(props) {
             </Row>
         </Container>
     )
-}
+}	
 
-export default ListContent;
+export default ListOffers;

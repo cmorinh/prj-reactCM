@@ -8,12 +8,12 @@ import { useFakeStoreApi } from "../contexts/FakeStoreApiContext";
 import { useMockupApi } from "../contexts/MockupApiContext";
 
 function Detail() {
-    const {getFakeProduct, getFakeProducts} = useFakeStoreApi();
-    const {product, products, getProduct, getProducts} = useMockupApi();
-    const {id, origin} = useParams();
-    const {addToCart} = useCart(); 
-    const [content, setContent] = useState({});
-    const [loading, setLoading] = useState(true);
+    const { getFakeProduct } = useFakeStoreApi();
+    const { getProduct } = useMockupApi();
+    const { id, origin } = useParams();
+    const { addToCart } = useCart(); 
+    const [ content, setContent ] = useState({});
+    const [ loading, setLoading ] = useState(true);
     
     const handleAddToCart = (id, origin) => {
         addToCart(id, origin);

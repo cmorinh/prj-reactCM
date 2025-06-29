@@ -6,6 +6,25 @@ const baseUrl = 'https://685879c1138a18086dfb0aba.mockapi.io/store/api/product/'
 export function MockupApiProvider({ children }) {
     const [products, setProducts] = useState([]);
 
+    const getProduct = async (id) => {
+        try 
+        {
+            const response = await fetch(`${baseUrl}/${id}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            
+            data.origin = 'oulet';
+            setProducts(data);
+
+            return data;
+        } catch (error) {
+            console.error('Error fetching fake products:', error);
+           return [];
+        }
+    };
+
     const getProducts = async () => {
         try 
         {
@@ -84,7 +103,7 @@ export function MockupApiProvider({ children }) {
     };  
 
     return (
-        <MockupApiContext.Provider value={{ products, getProducts, addProduct, updateProduct, deleteProduct }}>
+        <MockupApiContext.Provider value={{ products, getProduct, getProducts, addProduct, updateProduct, deleteProduct }}>
             {children}
         </MockupApiContext.Provider>
     );

@@ -153,15 +153,15 @@ function Admin() {
                             <Col col={12} md={6}>
                                 <Form>
                                     <Form.Group className='mb-2'>
-                                        <Form.Label className='text-white'>Title</Form.Label>
+                                        <Form.Label className='text-black'>Title</Form.Label>
                                         <Form.Control type="text" placeholder="Enter title" required value={title} onChange={(e) => setTitle(e.target.value)} minLength={3} maxLength={100} />
                                     </Form.Group>
                                     <Form.Group className='mb-2'>
-                                        <Form.Label className='text-white'>Description</Form.Label>
+                                        <Form.Label className='text-black'>Description</Form.Label>
                                         <Form.Control as="textarea" rows={3} placeholder="Enter description" required value={description} onChange={(e) => setDescription(e.target.value)} minLength={10} maxLength={200} />
                                     </Form.Group>
                                     <Form.Group className='mb-2'>
-                                    <Form.Label className='text-white'>Category</Form.Label>
+                                    <Form.Label className='text-black'>Category</Form.Label>
                                     <Form.Select required value={category} onChange={(e) => setCategory(e.target.value)}>
                                         <option value="">Select a category</option>                                    
                                         <option value="jewelry">Jewelry</option>
@@ -171,14 +171,14 @@ function Admin() {
                                     </Form.Select>
                                     </Form.Group>
                                     <Form.Group className='mb-2'>
-                                        <Form.Label className='text-white'>Price</Form.Label>
+                                        <Form.Label className='text-black'>Price</Form.Label>
                                         <Form.Control type="number" placeholder="Enter price" required value={price} onChange={(e) => setPrice(e.target.value)} min={1} />
                                     </Form.Group>
                                     <Form.Group className='mb-2'>
-                                        <Form.Label className='text-white d-block'>Image</Form.Label>
+                                        <Form.Label className='text-black d-block'>Image</Form.Label>
                                         <Form.Control id="inputImage" type="text" placeholder="Enter url image" required value={image} onChange={(e) => setImage(e.target.value)} className='d-inline-block' style={{width: '85%'}} />
-                                            <span title='Generate image' className='text-white p-2 ml-2' style={{cursor: 'pointer'}} onClick={createImage}>
-                                                <svg onClick={createImage} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-image text-white mx-1" viewBox="0 0 16 16">
+                                            <span title='Generate image' className='text-black p-2 ml-2' style={{cursor: 'pointer'}} onClick={createImage}>
+                                                <svg onClick={createImage} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-image text-black mx-1" viewBox="0 0 16 16">
                                                     <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
                                                     <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1z"/>
                                                 </svg>
@@ -197,7 +197,7 @@ function Admin() {
                     <>
                         <Row>
                             <Col className='d-flex justify-content-end'>
-                                <button size='sm' className="btn btn-link text-white p-2 rounded-3 cursor-pointer" onClick={() => handleAddProduct()}>
+                                <button size='sm' className="btn btn-link text-black p-2 rounded-3 cursor-pointer" onClick={() => handleAddProduct()}>
                                     Add Product
                                 </button>
                             </Col>

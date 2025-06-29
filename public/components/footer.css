@@ -3,8 +3,6 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: var(--bs-tertiary-bg);
-    border-top: 1px solid var(--bs-border-color);
     z-index: 1000;
 }
 

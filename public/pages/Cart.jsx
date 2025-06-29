@@ -65,7 +65,7 @@ function Cart() {
                 : (
                     <Container className="py-4">
                         {content.length === 0 ? (
-                            <div className="text-center text-white font-weight-bold">
+                            <div className="text-center text-black font-weight-bold">
                                 <h3>Your cart is empty</h3>
                             </div>
                         ) : (

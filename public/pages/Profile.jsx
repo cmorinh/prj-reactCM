@@ -41,7 +41,7 @@ function Profile() {
                 <Col xs={12} md={4} className="text-center mb-3">
                     <Image src={`https://picsum.photos/200/200?random=${randomNumber()}`} roundedCircle />
                 </Col>
-                <Col xs={12} md={5} className="text-white font-weight-bold mb-3">
+                <Col xs={12} md={5} className="text-black font-weight-bold mb-3">
                     <h1>Information</h1>                    
                     <p>Email: {user}</p>
                     <p>Token: {token}</p>
