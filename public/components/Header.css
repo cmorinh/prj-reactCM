@@ -7,6 +7,10 @@
     font-weight: bold;
 }
 
+.navbar-toggler:focus {
+    box-shadow: none !important;
+}
+
 .count-cart {
     position: relative;
     width: 20px;
@@ -32,5 +36,22 @@
     }
     8% {
         transform: translateY(-5px);
+    }
+}
+
+.search-header {
+    width: 185px !important;
+    height: 30px !important;
+}
+
+.search-icon {
+    position: relative;
+    top: 0; 
+    right: -85%;
+}
+
+@media (min-width: 1024px) {
+    .search-header {
+        width: 250px !important;
     }
 }
