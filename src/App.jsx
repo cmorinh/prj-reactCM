@@ -41,6 +41,7 @@ function App() {
                 } />
                 <Route path="/detail/:id/:origin" element={<Detail/>} />
                 <Route path="/login" element={<Login />} />    
+                <Route path="*" element={<Home />} />
               </Routes>
               <Footer/>
             </CartProvider>

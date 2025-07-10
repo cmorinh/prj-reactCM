@@ -1,9 +1,22 @@
-import './footer.css';
+//import './footer.css';
+import styled from 'styled-components';
+
+const ContainerFooter = styled.div`
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+`;
+
+const ContentFooter =  styled.div`
+    padding: 1rem 0;
+`;
 
 function Footer() {
     return (
-        <footer className="footer-container" style={{backgroundColor: '#cfd4d9'}}>
-            <div className="footer-content d-flex flex-wrap justify-content-between align-items-center">
+        <ContainerFooter style={{backgroundColor: '#cfd4d9'}}>
+            <ContentFooter className="d-flex flex-wrap justify-content-between align-items-center">
                 <div className="col-md-4 d-flex align-items-center px-3">
                     <a href="/" className="me-2 mb-md-0 text-muted text-decoration-none lh-1 fw-bold">
                         STORE
@@ -33,8 +46,8 @@ function Footer() {
                         </a>
                     </li>
                 </ul>
-            </div>
-        </footer>
+            </ContentFooter>
+        </ContainerFooter>
     )
 }
 

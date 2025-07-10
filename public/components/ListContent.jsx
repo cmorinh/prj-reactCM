@@ -2,7 +2,16 @@ import { useEffect, useState } from "react";
 import { Container,Row,Col,Card, Button, Stack } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import { useFakeStoreApi } from "../contexts/FakeStoreApiContext";
-import './ListContent.css';
+import styled from 'styled-components';
+
+const CardList = styled(Card)`
+    &:hover {
+        box-shadow: 0 0 10px 0 rgba(117, 112, 112, 0.1);
+        -webkit-filter: brightness(1.07);
+        filter: brightness(1.07);
+        transform: translate(0, -5px);
+    }
+    `;
 
 function ListContent(props) {
     const { getFakeProducts } = useFakeStoreApi();
@@ -39,7 +48,7 @@ function ListContent(props) {
             <Row className="w-100 g-4">
             {content.map(item=> (
                 <Col key={item.id} xs={6} md={3} lg={3}>
-                    <Card className="h-100 card-list" onClick={() => detail(item.id, item.origin)}>
+                    <CardList className="h-100" onClick={() => detail(item.id, item.origin)}>
                         <Card.Img variant="top" src={item.image} style={{ height: '200px', objectFit: 'contain', padding: '1rem' }} alt={item.title} />
                         <Card.Body className="d-flex flex-column">
                             <Card.Title className="text-truncate">{item.title}</Card.Title>
@@ -48,7 +57,7 @@ function ListContent(props) {
                                 {item.description.substring(0, 100)}...
                             </Card.Text>
                         </Card.Body>
-                    </Card>
+                    </CardList>
                 </Col>
             ))}
             </Row>

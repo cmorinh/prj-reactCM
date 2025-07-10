@@ -28,7 +28,7 @@ function Carousel() {
     return (
         <Swiper
             spaceBetween={30}
-            effect={'slide'}
+            effect={'fade'}
             navigation={true}
             autoplay={{
                 delay: 3500,
@@ -43,19 +43,19 @@ function Carousel() {
          >
         <SwiperSlide>
             <picture>                
-                <source media="(max-width: 425px)" srcset={BlackAndWhiteMobile} alt="black-and-white-mobile"/>
+                <source media="(max-width: 425px)" srcSet={BlackAndWhiteMobile} alt="black-and-white-mobile"/>
                 <img src={BlackAndWhite} alt="black-and-white"/>
             </picture>
         </SwiperSlide>
         <SwiperSlide>
             <picture>                
-                <source media="(max-width: 425px)" srcset={ClothesMobile} alt="clothes-mobile"/>
+                <source media="(max-width: 425px)" srcSet={ClothesMobile} alt="clothes-mobile"/>
                 <img src={Clothes} alt="clothes" />
             </picture>            
         </SwiperSlide>
         <SwiperSlide>
             <picture>                
-                <source media="(max-width: 425px)" srcset={WomanMobile} alt="woman-mobile"/>
+                <source media="(max-width: 425px)" srcSet={WomanMobile} alt="woman-mobile"/>
                 <img src={Woman} alt="woman" />
             </picture> 
         </SwiperSlide>          
