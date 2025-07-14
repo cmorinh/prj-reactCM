@@ -1,0 +1,4 @@
+# Configuración de redirecciones para React Router
+# Redirigir todas las rutas a index.html para SPA
+
+/*    /index.html   200 
