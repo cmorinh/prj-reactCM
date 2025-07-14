@@ -211,7 +211,7 @@ La aplicación está optimizada para despliegue en cualquier plataforma de hosti
 
 ## 👨‍💻 Autor
 
-**Carlos Morinigo**
+**Carlos Morín**
 - GitHub: [@cmorinh](https://github.com/cmorinh)
 
 ---
