@@ -1,10 +1,14 @@
 import ListContent from "../components/ListContent";
+import Seo from "../components/Seo";
 
 function Dress() {
     const filter = { category : "clothing" }
 
     return (
-       <ListContent filter={filter} />
+        <>
+             <Seo title="Store - Fashion" />
+             <ListContent filter={filter} />
+        </>       
     )
 }
 

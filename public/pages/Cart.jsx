@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import Loading from '../components/Loading';
 import { useNavigate } from 'react-router-dom';
 import {useState} from 'react';
+import Seo from "../components/Seo";
 
 function Cart() {
     const { cart, content, removeFromCart, clearCart } = useCart();
@@ -53,6 +54,7 @@ function Cart() {
 
     return (
         <>
+            <Seo title="Store - Cart" />
             {loading 
                 ? (
                     <>

@@ -1,6 +1,7 @@
 import Carousel from '../components/Carousel';
 import ListContent from '../components/ListContent';
 import ListOffers from '../components/ListOffers';
+import Seo from "../components/Seo";
 
 function Home() {
     const filterFashion = { category: "clothing", top: 4 }
@@ -9,6 +10,7 @@ function Home() {
 
     return (	
         <>
+            <Seo title="Store - Home" />
             <Carousel />
             <h3 className='text-center my-4 fw-bold'>Man & Women Fashion</h3>
             <ListContent filter={filterFashion} />

@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react';
 import { Button, Table, Container, Row, Col, Form } from 'react-bootstrap';
 import Loading from '../components/Loading';
 import Swal from 'sweetalert2';
+import Seo from "../components/Seo";
 
 function Admin() {
     const { products, getProducts, addProduct, updateProduct, deleteProduct } = useMockupApi();
     const [loading, setLoading] = useState(false);
-    //const [newProduct, setNewProduct] = useState({id: 0, title: '', description: '', category: '', price: 0, image: '' });
     const [isNewProduct, setIsNewProduct] = useState(false);
     const [isEditProduct, setIsEditProduct] = useState(false);
     const [id, setId] = useState(0);
@@ -145,6 +145,7 @@ function Admin() {
 
     return (
         <>
+            <Seo title="Store - Admin" />
             {loading ? <Loading /> : (  
             <Container>
                 {(isNewProduct || isEditProduct) && (
